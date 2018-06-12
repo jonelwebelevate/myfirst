@@ -1,0 +1,68 @@
+<!--
+
+Assignment: BSc Mobile Web Applications, Digital Skills Academy
+Student ID: xxxxx
+File created: 2018/06/10
+Reference Sources: Website link to code referenced or the book, authors name and page number
+
+@author: Ionel Robu
+@version: v1.0
+-
+Changelog:
+(if any)
+
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <title>Bus Route</title>
+  <link href="style.css" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'> 
+  <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+ 
+
+</head>
+
+<body>
+ <h1>Real-time Bus Information </h1>
+<input type=button onClick="parent.location='index.html'" value='Go Back'>
+
+
+<main>
+    <p>The next bus &nbsp;<span id="route-id"></span> will depart from stop &nbsp;<span id="stop-id"></span> at&nbsp;<span id="arrival-time"></span></p>
+</main> 
+
+    <div id="footer">
+        <p>Copyrights &copy; 2018 All Rights Reserved by Real-time Bus Information</p>
+    </div>
+
+<script type="text/javascript">
+
+// stop and route ids can be found at bus stops or https://data.smartdublin.ie/cgi-bin/rtpi/busstopinformation?jsoncallback=?
+ stopId = 2;
+ routeId = 38;
+ maxResults = 3;
+
+document.getElementById('route-id').textContent = routeId;
+document.getElementById('stop-id').textContent = stopId;
+    
+    fetchInfo = () => {
+     url = `https://data.smartdublin.ie/cgi-bin/rtpi/realtimebusinformation?format=json&maxresults=${maxResults}&stopid=${stopId}&routeid=${routeId}`;
+
+    fetch(url, { method: 'get' })
+        .then(response => response.json()) // ReadableStream => JSON
+        .then(data => {
+             time = data.results[0].arrivaldatetime.substring(11, 16);
+            document.getElementById('arrival-time').textContent = time;
+        }).catch((err) => {
+            document.getElementById('arrival-time').textContent = `...never, something has gone wrong!`;
+        });
+}
+    fetchInfo();
+
+</script>
+</body>  
+</html>

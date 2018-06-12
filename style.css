@@ -1,0 +1,41 @@
+
+
+#route-id, #stop-id, #arrival-time {
+  padding: 2px 5px;
+  border: 2px solid #333;
+  border-radius: 5px;
+  background: lightgreen;
+}
+
+main {
+    background-color: yellow;
+    padding: 20px 20px;
+    
+}
+
+h1 {
+    text-align: center;
+}
+p {
+    color: #64707b;
+    font-size: 22px;
+    font-weight: 300;
+    text-align: center;
+}
+
+body { 
+    background-image: url("buses1.jpg"); 
+    background-repeat: no-repeat; 
+    background-size: auto; 
+}
+
+#footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+}
+
